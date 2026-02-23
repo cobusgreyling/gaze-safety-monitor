@@ -18,6 +18,8 @@ In a Caterpillar haul truck, gaze tells you whether the operator is paying atten
 
 Same signal.
 
+![Description](images/2026-02-23_20-00-28.jpg)  
+
 NVIDIA's [Maxine Eye Contact](https://build.nvidia.com/nvidia/eyecontact) technology reads that signal.
 
 And I built a working prototype that repurposes it for safety monitoring.
