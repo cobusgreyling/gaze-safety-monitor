@@ -1,3 +1,5 @@
+[Header](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/nvidia-maxine-upscaling-ai.jpg)
+
 # NVIDIA Eye Contact & Gaze Detection
 
 ## Where Conversation Design Meets Operator Safety
