@@ -18,11 +18,14 @@ In a Caterpillar haul truck, gaze tells you whether the operator is paying atten
 
 Same signal.
 
+![Web app](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-47-50.png)
 
 
 NVIDIA's [Maxine Eye Contact](https://build.nvidia.com/nvidia/eyecontact) technology reads that signal.
 
 And I built a working prototype that repurposes it for safety monitoring.
+
+https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-56-50%20(3).gif
 
 ---
 
@@ -99,6 +102,9 @@ The same gaze estimation that tells a video call "this person is looking at thei
 
 The technology is identical. The application is life-critical.
 
+
+![Web app](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-19-58.png)
+
 ---
 
 ### The Safety Case: Heavy Machinery
@@ -119,6 +125,8 @@ What Caterpillar understood early is what I think the rest of the industry is on
 
 ### How The Demo Works
 
+![Web app](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-26-49.png)
+
 I built a working prototype that repurposes NVIDIA's Eye Contact API for safety monitoring. The approach is indirect but effective — and it reveals something about how the technology works under the hood.
 
 The Eye Contact NIM is designed to redirect gaze — it takes a video where someone is looking away from the camera and returns a video where their eyes have been corrected to look forward. The API does not expose the raw gaze angle estimates. What it does expose is the corrected video.
@@ -127,6 +135,7 @@ So, compare the original against the corrected output. If the frames look the sa
 
 
 ![Architecture](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-47-50.png) 
+
 
 NVIDIA only does the AI-heavy part — face tracking, gaze estimation, redirection. Everything else runs locally on your laptop: the frame comparison, event detection, annotated video generation, and the Gradio web UI.
 
