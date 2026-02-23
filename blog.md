@@ -27,7 +27,7 @@ NVIDIA's [Maxine Eye Contact](https://build.nvidia.com/nvidia/eyecontact) techno
 
 And I built a working prototype that repurposes it for safety monitoring.
 
-https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-56-50%20(3).gif
+![Working UI](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-56-50%20(3).gif)
 
 ---
 
