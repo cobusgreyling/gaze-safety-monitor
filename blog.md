@@ -19,6 +19,7 @@ In a Caterpillar haul truck, gaze tells you whether the operator is paying atten
 Same signal.
 
 
+
 NVIDIA's [Maxine Eye Contact](https://build.nvidia.com/nvidia/eyecontact) technology reads that signal.
 
 And I built a working prototype that repurposes it for safety monitoring.
@@ -124,59 +125,8 @@ The Eye Contact NIM is designed to redirect gaze — it takes a video where some
 
 So, compare the original against the corrected output. If the frames look the same, the person was already looking at the camera. If the frames differ, the API had to redirect their gaze — which means they were looking away. The magnitude of the difference maps directly to how far they were looking away.
 
-```
-┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-  YOUR LAPTOP (Python + OpenCV + Gradio)
-│                                                       │
-  ┌───────────┐
-│ │ Input     │  MP4 video of operator / driver         │
-  │ Video     │
-│ └─────┬─────┘                                         │
-        │
-│       │  video chunks via gRPC                        │
-        │
-└ ─ ─ ─ ┼ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-        │
-════════╪══════════════════════════════════ HTTPS ═══════
-        │
-┌ ─ ─ ─ ┼ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-  NVIDIA NIM  (grpc.nvcf.nvidia.com:443)
-│       │                                               │
-        ▼
-│  Face Tracking ─▶ Gaze Estimation ─▶ Gaze Redirect   │
-   (landmarks)      (pitch/yaw)        (eyes corrected)
-│       │                                               │
-        │  redirected video chunks
-│       │                                               │
-└ ─ ─ ─ ┼ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-        │
-════════╪══════════════════════════════════ HTTPS ═══════
-        │
-┌ ─ ─ ─ ┼ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐
-  YOUR LAPTOP
-│       ▼                                               │
-  ┌─────────────────────────────────────────────────┐
-│ │ Frame Comparison                                │   │
-  │ Original vs Redirected ─▶ per-frame score       │
-│ └──────────────────────────────┬──────────────────┘   │
-                                 │
-│ ┌──────────────────────────────▼──────────────────┐   │
-  │ Safety Analysis                                 │
-│ │ Score timeseries ─▶ event detection ─▶ severity │   │
-  └──────────────────────────────┬──────────────────┘
-│                                │                      │
-  ┌──────────────┐ ┌────────────┴──┐ ┌──────────────┐
-│ │ Annotated    │ │ Timeline     │ │ Safety       │  │
-  │ Video        │ │ Chart        │ │ Report       │
-│ │ (HUD + bars) │ │ (PNG)        │ │ (JSON)       │  │
-  └──────────────┘ └───────────────┘ └──────────────┘
-│                                                       │
-  ┌─────────────────────────────────────────────────┐
-│ │ Gradio Web UI  ─  http://localhost:7860         │   │
-  └─────────────────────────────────────────────────┘
-│                                                       │
-└ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘
-```
+
+![Architecture](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/2026-02-23_20-47-50.png) 
 
 NVIDIA only does the AI-heavy part — face tracking, gaze estimation, redirection. Everything else runs locally on your laptop: the frame comparison, event detection, annotated video generation, and the Gradio web UI.
 
