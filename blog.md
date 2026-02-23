@@ -1,4 +1,4 @@
-[Header](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/nvidia-maxine-upscaling-ai.jpg)
+![Header](https://github.com/cobusgreyling/gaze-safety-monitor/blob/main/images/nvidia-maxine-upscaling-ai.jpg)
 
 # NVIDIA Eye Contact & Gaze Detection
 
